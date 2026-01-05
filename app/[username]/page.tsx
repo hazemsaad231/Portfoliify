@@ -1,25 +1,3 @@
-// import NavBar from "../Components/Navbar/navbar";
-// import About from "../Components/About/about";
-// import Contact from "../Components/Contact/contact";
-// import Experience from "../Components/Experience/experience";
-// import Hero from "../Components/Hero/hero";
-// import Projects from "../Components/Projects/projects";
-
-// export default function Home() {
-//   return (
-//     <div  className="app">
-//       <NavBar />
-//       <Hero />
-//       <About />
-//       <Experience />
-//       <Projects />
-//       <Contact />
-//     </div>
-//   );
-// }
-
-
-
 import NavBar from "./../Components/Navbar/navbar";
 import About from "./../Components/About/about";
 import Contact from "./../Components/Contact/contact";

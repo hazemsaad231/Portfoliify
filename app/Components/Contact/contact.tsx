@@ -26,22 +26,22 @@ function Contact({ userId }: { userId: string }) {
     {
       id: 'email',
       icon: <Mail size={30} />,
-      label: dbContact?.email || 'example@gmail.com',
-      href: `mailto:${dbContact?.email}`,
+      label: dbContact?.email || 'your.email@example.com',
+      href: `mailto:${dbContact?.email}`||'your.email@example.com',
       color: 'from-blue-500 to-cyan-500'
     },
     {
       id: 'phone',
       icon: <Phone size={30} />,
-      label: dbContact?.phone || '010994076093',
-      href: `tel:${dbContact?.phone}`,
+      label: dbContact?.phone || '+1 (555) 123-4567',
+      href: `tel:${dbContact?.phone}`||'your.phone.number',
       color: 'from-green-500 to-emerald-500'
     },
     {
       id: 'whatsapp',
       icon: <MessageCircle size={35} />,
       label: 'WhatsApp',
-      href: dbContact?.whatsapp || 'https://wa.me/201099076093', // تأكد من وجود هذا العمود في الجدول
+      href: dbContact?.whatsapp || 'https://wa.me/yourwhatsappnumber', // تأكد من وجود هذا العمود في الجدول
       color: 'from-green-400 to-green-600'
     }
   ];

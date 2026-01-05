@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -7,9 +6,48 @@ import { ExternalLink, ChevronDown, ChevronLeft, ChevronRight, Github, Loader2} 
 import Image from 'next/image';
 import { supabase } from '../../utils/supabase';
 
-const Projects = ({ userId }: { userId: string }) => {
-  const [active, setActive] = useState<string>(''); 
-  const [expanded, setExpanded] = useState<string | null>(null); 
+const defaultProjects = [
+  {
+    id: 1,
+    title: "Your Project 1",
+    category: "Web Development",
+    description: "A web application built with modern technologies. Features include user authentication and responsive design.",
+    image_url: "/img/default.jpg",
+    github_link: "https://github.com/yourusername/project1",
+    live_link: "https://yourproject1.vercel.app"
+  },
+  {
+    id: 2,
+    title: "Your Project 2",
+    category: "Productivity",
+    description: "A productivity tool that helps users manage tasks efficiently with intuitive interface and real-time updates.",
+    image_url: "/img/default.jpg",
+    github_link: "https://github.com/yourusername/project2",
+    live_link: "https://yourproject2.vercel.app"
+  },
+  {
+    id: 3,
+    title: "Your Project 3",
+    category: "Web Development",
+    description: "A responsive web application that provides useful functionality with clean UI and smooth user experience.",
+    image_url: "/img/default.jpg",
+    github_link: "https://github.com/yourusername/project3",
+    live_link: "https://yourproject3.vercel.app"
+  },
+  {
+    id: 4,
+    title: "Your Project 4",
+    category: "Mobile",
+    description: "A mobile application available on iOS and Android platforms with native performance and offline capabilities.",
+    image_url: "/img/default.jpg",
+    github_link: "https://github.com/yourusername/project4",
+    live_link: "https://yourproject4.vercel.app"
+  }
+];
+
+const Projects = ({ userId }: { userId: string | null }) => {
+  const [active, setActive] = useState<string>('Web Development');
+  const [expanded, setExpanded] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [dbProjects, setDbProjects] = useState<any[]>([]);
@@ -20,19 +58,26 @@ const Projects = ({ userId }: { userId: string }) => {
     async function fetchUserProjects() {
       setLoading(true);
       try {
-        const { data, error } = await supabase
-          .from('projects')
-          .select('*')
-          .eq('user_id', userId);
-        
-        if (data && data.length > 0) {
-          setDbProjects(data);
-          // استخراج أول تصنيف متاح ليكون هو المختار تلقائياً
-          const categories = Array.from(new Set(data.map((p: any) => p.category)));
-          setActive(categories[0]);
+        if (userId) {
+          const { data, error } = await supabase
+            .from('projects')
+            .select('*')
+            .eq('user_id', userId);
+
+          if (data && data.length > 0) {
+            setDbProjects(data);
+            // استخراج أول تصنيف متاح ليكون هو المختار تلقائياً
+            const categories = Array.from(new Set(data.map((p: any) => p.category)));
+            setActive(categories[0]);
+          } else {
+            setDbProjects(defaultProjects);
+          }
+        } else {
+          setDbProjects(defaultProjects);
         }
       } catch (err) {
         console.error("Error fetching projects:", err);
+        setDbProjects(defaultProjects);
       } finally {
         setLoading(false);
       }

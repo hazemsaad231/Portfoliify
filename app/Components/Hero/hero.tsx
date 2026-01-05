@@ -5,19 +5,25 @@ import { FaWhatsapp } from "react-icons/fa";
 import { supabase } from "../../utils/supabase";
 
 
-const Hero = async ({ userId }: { userId: string }) => {
+const Hero = async ({ userId }: { userId: string | null }) => {
 
-  const { data } = await supabase
-    .from('hero')
-    .select('*')
-    .eq('user_id', userId)
-    .single();
+  let data = null;
 
-  if (!data) return null;
+  if (userId) {
+    const { data: fetchedData } = await supabase
+      .from('hero')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
 
-  console.log("Hero Data:", data);
+    data = fetchedData;
+  }
 
-  const { full_name , job_title , mini_bio , exp_years , projects_completed , linkedin_url , github_url , whatsapp_url , cv_url } = data;
+  if (data) {
+    console.log("Hero Data:", data);
+  }
+
+  const { full_name = 'Your Name', job_title = 'Your Job Title', mini_bio = 'Your professional bio goes here.', exp_years = '0', projects_completed = '0', linkedin_url = '#', github_url = '#', whatsapp_url = '', cv_url = '#' } = data || {};
 
   return (
     <div className="py-44"  id="home">

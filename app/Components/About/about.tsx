@@ -6,40 +6,47 @@ import { useEffect , useState } from 'react';
 import { supabase } from '../../utils/supabase';
 
 
-const education = [
+const defaultData = [
   {
-    degree: "Bachelor's in Computer Science",
-    institution: "University of Banha", 
-    year: "2021 - 2025",
-    description: "Focused on software engineering, algorithms, and database systems"
+    about_me_long: "Tell visitors about yourself here. Share your background, interests, and what drives you as a developer. This is your chance to make a personal connection and showcase your unique story and passion for technology.",
+    skills: ["Your Skill 1", "Your Skill 2", "Your Skill 3", "Your Skill 4", "Your Skill 5", "Your Skill 6", "Your Skill 7"],
+    education: [
+      {
+        degree: "Your Degree",
+        university: "Your University Name",
+        duration: "Start Year - End Year",
+        description: "Describe your educational background, achievements, and what you learned during your studies."
+      }
+    ]
   }
 ];
 
-export default  function About({ userId }: { userId: string }) {
+export default  function About({ userId }: { userId: string | null }) {
   const [activeTab, setActiveTab] = useState('skills');
-  
+
   const tabs = [
     { id: 'skills', label: 'Skills' },
     { id: 'education', label: 'Education' }
   ];
 
     const [dbContact, setDbContact] = useState<any>(null);
-  
+
     // 1. جلب البيانات من Supabase
     useEffect(() => {
       async function getContact() {
+        if (!userId) return;
         const { data } = await supabase
           .from('profile_all')
           .select('*')
           .eq('user_id', userId);
-        
-        if (data) 
+
+        if (data)
         setDbContact(data);
       }
       getContact();
-    }, []);
-  
-    const data = dbContact || [];
+    }, [userId]);
+
+    const data = dbContact || defaultData;
 
     console.log("About Data:", data);
 

@@ -8,9 +8,31 @@ import 'react-vertical-timeline-component/style.min.css';
 import { supabase } from '../../utils/supabase';
 import { useState, useEffect } from 'react';
 
+const defaultExperiences = [
+  {
+    id: 1,
+    name: "Your Job Title",
+    title: "Company Name",
+    date: "Start Date - End Date",
+    text: "Describe your responsibilities, achievements, and key contributions in this role. Highlight the technologies you used and the impact you made."
+  },
+  {
+    id: 2,
+    name: "Your Previous Job Title",
+    title: "Previous Company Name",
+    date: "Start Date - End Date",
+    text: "Detail your experience in this position, including projects you worked on, skills you developed, and any notable accomplishments."
+  },
+  {
+    id: 3,
+    name: "Your First Job Title",
+    title: "First Company Name",
+    date: "Start Date - End Date",
+    text: "Share about your early career experiences, what you learned, and how it shaped your development journey."
+  }
+];
 
-
-export default function Experience({ userId }: { userId: string }) {
+export default function Experience({ userId }: { userId: string | null }) {
 
 
   const [dbContact, setDbContact] = useState<any>(null);
@@ -18,18 +40,19 @@ export default function Experience({ userId }: { userId: string }) {
   // 1. جلب البيانات من Supabase
   useEffect(() => {
     async function getContact() {
+      if (!userId) return;
       const { data } = await supabase
         .from('experiences')
         .select('*')
         .eq('user_id', userId);
-      
-      if (data) 
+
+      if (data)
       setDbContact(data);
     }
     getContact();
-  }, []);
+  }, [userId]);
 
-  const data = dbContact || [];
+  const data = dbContact || defaultExperiences;
 
 
 
