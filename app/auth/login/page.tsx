@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { supabase } from '../../utils/supabase';
 import { useRouter } from 'next/navigation';
 import { LogIn, Mail, Lock, Loader2, ArrowRight } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -31,7 +32,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center p-4 font-sans" dir="ltr">
+    <div className="min-h-screen flex items-center justify-center p-4 font-sans" dir="ltr">
       <div className="w-full max-w-md">
         
         {/* Logo / Title Area */}

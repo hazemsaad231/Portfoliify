@@ -1,0 +1,4 @@
+- [x] Install react-hot-toast
+- [x] Add Toaster component to layout.tsx
+- [x] Replace alert in app/auth/register/page.tsx
+- [x] Replace alert in app/auth/login/page.tsx

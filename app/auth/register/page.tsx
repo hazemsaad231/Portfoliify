@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { supabase } from '../../utils/supabase';
 import { useRouter } from 'next/navigation';
 import { UserPlus, Mail, Lock, User, Loader2, ArrowRight } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -32,7 +33,7 @@ export default function RegisterPage() {
     });
 
     if (signUpError) {
-      alert('خطأ في التسجيل: ' + signUpError.message);
+      toast.error('خطأ في التسجيل: ' + signUpError.message);
       setLoading(false);
       return;
     }
@@ -51,9 +52,9 @@ export default function RegisterPage() {
 
       if (profileError) {
         console.error("Profile Error:", profileError.message);
-        alert("تم إنشاء الحساب، ولكن حدثت مشكلة في إعداد الرابط الشخصي.");
+        toast.error("تم إنشاء الحساب، ولكن حدثت مشكلة في إعداد الرابط الشخصي.");
       } else {
-        alert('تم التسجيل بنجاح! افحص بريدك الإلكتروني لتفعيل الحساب.');
+        toast.success('تم التسجيل بنجاح! افحص بريدك الإلكتروني لتفعيل الحساب.');
         router.push('/auth/login');
       }
     }
@@ -61,10 +62,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center p-4 font-sans" dir="ltr">
+    <div className="min-h-screen flex items-center justify-center p-4 font-sans" dir="ltr">
       <div className="w-full max-w-md">
         {/* Logo / Title Area */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-4">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#8750f7]/10 text-[#8750f7] mb-4">
             <UserPlus size={32} />
           </div>
@@ -72,7 +73,7 @@ export default function RegisterPage() {
           <p className="text-gray-500 mt-2">Create your unique portfolio in minutes</p>
         </div>
 
-        <form onSubmit={handleSignUp} className="bg-[#0b0f13] border border-gray-800 p-8 rounded-3xl shadow-2xl space-y-5">
+        <form onSubmit={handleSignUp} className="bg-[#0b0f13] border border-gray-800 p-6 rounded-3xl shadow-2xl space-y-4">
           
           {/* Full Name Input */}
           <div>
@@ -82,7 +83,7 @@ export default function RegisterPage() {
               <input 
                 type="text" 
                 placeholder="Hazem Saad"
-                className="w-full bg-black/40 border border-gray-800 rounded-2xl py-4 pl-12 pr-4 text-white outline-none focus:border-[#8750f7] transition-all"
+                className="w-full bg-black/40 border border-gray-800 rounded-2xl py-2 pl-12 pr-4 text-white outline-none focus:border-[#8750f7] transition-all"
                 onChange={(e) => setFullName(e.target.value)}
                 required
               />
@@ -97,7 +98,7 @@ export default function RegisterPage() {
               <input 
                 type="text" 
                 placeholder="hazem_dev"
-                className="w-full bg-black/40 border border-gray-800 rounded-2xl py-4 pl-10 pr-4 text-white outline-none focus:border-[#8750f7] transition-all"
+                className="w-full bg-black/40 border border-gray-800 rounded-2xl py-2 pl-10 pr-4 text-white outline-none focus:border-[#8750f7] transition-all"
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
@@ -114,7 +115,7 @@ export default function RegisterPage() {
               <input 
                 type="email" 
                 placeholder="hazem@example.com"
-                className="w-full bg-black/40 border border-gray-800 rounded-2xl py-4 pl-12 pr-4 text-white outline-none focus:border-[#8750f7] transition-all"
+                className="w-full bg-black/40 border border-gray-800 rounded-2xl py-2 pl-12 pr-4 text-white outline-none focus:border-[#8750f7] transition-all"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -129,7 +130,7 @@ export default function RegisterPage() {
               <input 
                 type="password" 
                 placeholder="••••••••"
-                className="w-full bg-black/40 border border-gray-800 rounded-2xl py-4 pl-12 pr-4 text-white outline-none focus:border-[#8750f7] transition-all"
+                className="w-full bg-black/40 border border-gray-800 rounded-2xl py-2 pl-12 pr-4 text-white outline-none focus:border-[#8750f7] transition-all"
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
@@ -140,7 +141,7 @@ export default function RegisterPage() {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full bg-[#8750f7] hover:bg-[#6b3be6] text-white py-4 rounded-2xl font-bold transition-all shadow-lg shadow-[#8750f7]/20 flex items-center justify-center gap-2 group disabled:opacity-50"
+            className="w-full bg-[#8750f7] hover:bg-[#6b3be6] text-white py-3 rounded-2xl font-bold transition-all shadow-lg shadow-[#8750f7]/20 flex items-center justify-center gap-2 group disabled:opacity-50"
           >
             {loading ? (
               <Loader2 className="animate-spin" size={20} />
