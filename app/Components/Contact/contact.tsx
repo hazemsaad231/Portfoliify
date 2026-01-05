@@ -41,7 +41,7 @@ function Contact({ userId }: { userId: string }) {
       id: 'whatsapp',
       icon: <MessageCircle size={35} />,
       label: 'WhatsApp',
-      href: dbContact?.whatsapp || 'https://wa.me/yourwhatsappnumber', // تأكد من وجود هذا العمود في الجدول
+      href: `https://wa.me/2${dbContact?.whatsapp}` || 'https://wa.me/yourwhatsappnumber', // تأكد من وجود هذا العمود في الجدول
       color: 'from-green-400 to-green-600'
     }
   ];
