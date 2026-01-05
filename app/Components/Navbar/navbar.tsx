@@ -212,41 +212,41 @@ const NavBar = ({ userId }: { userId: string | null }) => {
           </span>
         </motion.div>
         
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <ul className='flex items-center gap-8'>
-            {navLinks.map((link, index) => (
-              <li key={index}>
-                <a
-                  href={link.href}
-                  className="text-md font-medium text-gray-200 hover:text-[#8750f7] transition-colors relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#8750f7] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-              </li>
-            ))}
-          </ul>
+        
+{/* داخل الـ Desktop Navigation */}
+<div className="hidden md:flex items-center gap-8">
+  <ul className='flex items-center gap-8'>
+    {navLinks.map((link, index) => (
+      <li key={index}>
+        <a href={link.href} className="text-md font-medium text-gray-200 hover:text-[#8750f7] transition-colors relative group">
+          {link.label}
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#8750f7] transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+    ))}
+  </ul>
 
-          {/* زر تسجيل الدخول المسترجع */}
-          <Link 
-            href="auth/login" 
-            className="bg-[#8750f7] text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-[#6b3be6] transition-all shadow-lg shadow-[#8750f7]/20"
-          >
-            Create portfolio
-          </Link>
-        </div>
+  {/* الشرط السحري: يظهر فقط لو مفيش userId (يعني في الصفحة الرئيسية) */}
+  {!userId && (
+    <Link 
+      href="/auth/register" 
+      className="bg-[#8750f7] text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-[#6b3be6] transition-all shadow-lg shadow-[#8750f7]/20"
+    >
+      Create Portfolio
+    </Link>
+  )}
+</div>
 
-        {/* Mobile Menu Trigger */}
-        <div className="md:hidden flex items-center gap-4">
-          <Link href="/auth/login" className="text-sm font-bold text-[#8750f7]">Create portfolio</Link>
-          <button 
-            onClick={() => setNavbarVisible(true)}
-            className="p-2 text-white hover:text-[#8750f7] transition-colors"
-          >
-            <FaAlignRight size={24} />
-          </button>
-        </div>
+{/* داخل الـ Mobile Menu Trigger */}
+
+{/* داخل الـ Mobile Menu Trigger */}
+<div className="md:hidden flex items-center gap-4">
+
+  <button onClick={() => setNavbarVisible(true)} className="p-2 text-white hover:text-[#8750f7]">
+    <FaAlignRight size={24} />
+  </button>
+</div>
+      
 
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
@@ -283,19 +283,25 @@ const NavBar = ({ userId }: { userId: string | null }) => {
                   </motion.li>
                 ))}
                 {/* رابط تسجيل الدخول في الموبايل */}
-                <motion.li
+
+
+                {!userId && (
+                                  <motion.li
                    initial={{ opacity: 0, y: 20 }}
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ delay: 0.6 }}
+                   className=""
                 >
                   <Link 
-                    href="/login" 
+                    href="auth/login" 
                     className="text-3xl font-bold text-[#8750f7]"
                     onClick={() => setNavbarVisible(false)}
                   >
-                    Login
+                    Create Portfolio
                   </Link>
                 </motion.li>
+                )}
+
               </ul>
             </motion.div>
           )}
