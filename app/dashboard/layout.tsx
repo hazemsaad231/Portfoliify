@@ -1,10 +1,51 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Briefcase, FolderDot, User, MessageSquare, Home, Share2 } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation'; 
+import { useState, useEffect } from 'react';
+import { supabase } from '../utils/supabase';
+import { 
+  LayoutDashboard, Briefcase, FolderDot, User, 
+  MessageSquare, Share2, LogOut 
+} from 'lucide-react';
+import toast from 'react-hot-toast';
+
+
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  
+  // تحديث الـ State ليشمل الـ logo_url
+  const [userData, setUserData] = useState<{ 
+    small_name: string; 
+    full_name: string; 
+    logo_url?: string 
+  } | null>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data } = await supabase
+          .from('hero')
+          .select('small_name, full_name, logo_url') // جلب رابط اللوجو
+          .eq('user_id', user.id)
+          .single();
+        if (data) setUserData(data);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast.error("Error logging out");
+    } else {
+      toast.success("Logged out successfully");
+      router.push('/auth/login');
+    }
+  };
 
   const menuItems = [
     { name: 'Hero', icon: <LayoutDashboard size={22} />, href: '/dashboard/hero' },
@@ -12,18 +53,25 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { name: 'Experience', icon: <Briefcase size={22} />, href: '/dashboard/experience' },
     { name: 'Projects', icon: <FolderDot size={22} />, href: '/dashboard/projects' },
     { name: 'Contact', icon: <MessageSquare size={22} />, href: '/dashboard/contact' },
-    { name: 'Links', icon: <Share2 size={22} />, href: '/dashboard/portfoilo' }, // تم تصحيح الاسم هنا
+    { name: 'Links', icon: <Share2 size={22} />, href: '/dashboard/portfoilo' },
   ];
 
   return (
     <div className="flex min-h-screen bg-[#050709] text-white font-sans">
       
-      {/* 1. Desktop Sidebar (Visible only on md and up) */}
+      {/* 1. Desktop Sidebar */}
       <aside className="hidden md:flex w-64 border-r border-gray-800 bg-[#0b0f13] flex-col fixed h-full z-40">
         <div className="p-8">
-          <div className="flex items-center gap-2 text-xl font-bold text-[#8750f7]">
-            <Home size={24} />
-            <span className="tracking-tighter uppercase text-white">Console<span className="text-[#8750f7]">.</span></span>
+          <div className="flex items-center gap-3 text-xl font-bold">
+            {/* اللوجو العلوي: يعرض الصورة أو الحروف */}
+            <div className="w-10 h-10 bg-[#8750f7] text-white rounded-xl flex items-center justify-center overflow-hidden shadow-lg shadow-[#8750f7]/20 border border-white/10">
+              {userData?.logo_url ? (
+                <img src={userData.logo_url} className="w-full h-full object-cover" alt="Logo" />
+              ) : (
+                <span className="text-sm font-black tracking-tighter">{userData?.small_name || "XX"}</span>
+              )}
+            </div>
+            <span className="tracking-tighter uppercase text-white text-lg">Dash<span className="text-[#8750f7]">.</span></span>
           </div>
         </div>
 
@@ -49,55 +97,63 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           })}
         </nav>
 
-        <div className="p-6 border-t border-gray-800/50">
-           <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/5">
-              <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-[#8750f7] to-[#b388ff] flex items-center justify-center font-bold">H</div>
-              <div className="text-[10px]">
-                <p className="font-bold text-gray-200 uppercase">Hazem</p>
-                <p className="text-[#8750f7]">Premium Editor</p>
-              </div>
-           </div>
+        {/* الجزء السفلي: تسجيل الخروج والبروفايل */}
+        <div className="p-4 border-t border-gray-800/50 space-y-4">
+           <button 
+             onClick={handleLogout}
+             className="w-full flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-red-400 transition-colors text-sm font-bold group"
+           >
+             <LogOut size={18} className="group-hover:-translate-x-1 transition-transform" />
+             Sign Out
+           </button>
+
         </div>
       </aside>
 
-      {/* 2. Mobile Bottom Navigation (Visible only on small screens) */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-[#0b0f13]/90 backdrop-blur-xl border-t border-gray-800 z-100 px-2 pb-safe">
-        <div className="flex justify-around items-center h-20">
-          {menuItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`flex flex-col items-center justify-center gap-1 flex-1 h-full transition-all ${
-                  isActive ? 'text-[#8750f7]' : 'text-gray-500'
-                }`}
-              >
-                <div className={`p-2 rounded-xl transition-all ${isActive ? 'bg-[#8750f7]/10' : ''}`}>
-                  {item.icon}
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-tighter">{item.name}</span>
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
-
-      {/* 3. Main Content Area */}
+      {/* 2. Mobile Nav & Main Content */}
       <main className="flex-1 md:ml-64 p-4 md:p-10 pb-32 md:pb-10 transition-all">
         {/* Header for Mobile only */}
-        <div className="md:hidden flex items-center justify-between mb-8 pt-4">
-           <div className="flex items-center gap-2 text-lg font-bold">
-              <div className="w-8 h-8 rounded-lg bg-[#8750f7] flex items-center justify-center"><Home size={16}/></div>
-              <span className="tracking-tight text-white uppercase">Console</span>
+        <div className="md:hidden flex items-center justify-between mb-8 pt-2 px-2">
+           <div className="flex items-center gap-2">
+              <div className="w-9 h-9 bg-[#8750f7] rounded-lg flex items-center justify-center overflow-hidden shadow-lg shadow-[#8750f7]/20">
+                {userData?.logo_url ? (
+                  <img src={userData.logo_url} className="w-full h-full object-cover" alt="Logo" />
+                ) : (
+                  <span className="text-[10px] font-black">{userData?.small_name || "XX"}</span>
+                )}
+              </div>
+              <span className="font-black text-white text-sm uppercase tracking-tighter">Dashboard</span>
            </div>
-           <div className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-xs font-bold">H</div>
         </div>
 
         <div className="max-w-5xl mx-auto">
           {children}
         </div>
       </main>
+
+      {/* Mobile Bottom Navigation */}
+      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-[#0b0f13]/90 backdrop-blur-xl border-t border-gray-800 z-100 px-2 pb-safe h-20">
+        <div className="flex justify-around items-center h-full">
+          {menuItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`flex flex-col items-center justify-center gap-1 flex-1 transition-all ${
+                  isActive ? 'text-[#8750f7]' : 'text-gray-500'
+                }`}
+              >
+                <div className={`p-2 rounded-xl transition-all ${isActive ? 'bg-[#8750f7]/10' : ''}`}>
+                  {item.icon}
+                </div>
+                <span className="text-[9px] font-bold uppercase tracking-tighter">{item.name}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
+
     </div>
   );
 }
