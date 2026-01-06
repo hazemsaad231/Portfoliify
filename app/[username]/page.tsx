@@ -67,7 +67,7 @@ export default async function UserProfile({ params }: { params: Promise<{ userna
   const userId = userProfile.id;
 
   return (
-    <div className="app bg-[#050505] min-h-screen selection:bg-[#8750f7]/30">
+    <div className="app min-h-screen selection:bg-[#8750f7]/30">
       <NavBar userId={userId} />
       <Hero userId={userId} />
       <About userId={userId} />
