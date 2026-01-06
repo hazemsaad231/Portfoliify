@@ -7,7 +7,7 @@ import Projects from "./../Components/Projects/projects";
 import { supabase } from "./../utils/supabase";
 import { notFound } from "next/navigation";
 
-// في النسخ الحديثة، params هي Promise
+
 export default async function UserProfile({ params }: { params: Promise<{ username: string }> }) {
   
   // 1. انتظار الـ params للحصول على القيم بداخلها
@@ -36,7 +36,6 @@ export default async function UserProfile({ params }: { params: Promise<{ userna
   return (
     <div className="app">
       <NavBar userId={userId} />
-      {/* تمرير الـ userId لكل مكون ليجلب بياناته الخاصة من الجداول الأخرى */}
       <Hero userId={userId} />
       <About userId={userId} />
       <Experience userId={userId} />

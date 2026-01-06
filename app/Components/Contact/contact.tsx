@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Mail, Phone, MessageCircle } from "lucide-react";
 import { supabase } from '../../utils/supabase'; // تأكد من صحة المسار
 
-function Contact({ userId }: { userId: string }) {
+function Contact({ userId }: { userId: string|null }) {
   const [dbContact, setDbContact] = useState<any>(null);
 
   // 1. جلب البيانات من Supabase
