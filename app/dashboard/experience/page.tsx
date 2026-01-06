@@ -16,6 +16,7 @@ export default function ExperienceAdmin() {
   // 1. جلب الخبرات الخاصة بالمستخدم الحالي فقط
   const fetchExperiences = async () => {
     try {
+      setLoading(true);
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
 
@@ -28,6 +29,8 @@ export default function ExperienceAdmin() {
       if (data) setExperiences(data);
     } catch (err) {
       console.error("Error fetching experiences:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -113,7 +116,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (loading && experiences.length === 0) return (
+  if (loading) return (
     <div className="min-h-screen bg-[#050505] flex items-center justify-center">
       <RefreshCw className="animate-spin text-[#8750f7]" size={40} />
     </div>
@@ -207,13 +210,8 @@ const handleSubmit = async (e: React.FormEvent) => {
         {/* List Section */}
         <div className="space-y-4">
           <h3 className="text-gray-500 font-bold uppercase tracking-tighter text-sm mb-4">Current Timeline</h3>
-          {experiences.length === 0 ? (
-            <div className="text-center py-20 bg-[#0b0f13] rounded-3xl border border-dashed border-gray-800">
-                <Briefcase size={40} className="mx-auto text-gray-700 mb-3"/>
-                <p className="text-gray-500">No experiences added yet.</p>
-            </div>
-          ) : (
-            experiences.map((exp) => (
+        
+            {experiences.map((exp) => (
               <div key={exp.id} className="group flex flex-col md:flex-row justify-between items-start md:items-center bg-[#0b0f13] p-6 rounded-3xl border border-gray-800 hover:border-[#8750f7]/50 transition-all animate-in fade-in duration-500">
                 <div className="flex gap-4">
                   <div className="bg-[#8750f7]/10 p-4 rounded-2xl text-[#8750f7] hidden sm:block h-fit">
@@ -245,7 +243,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </div>
               </div>
             ))
-          )}
+          }
         </div>
       </div>
     </div>

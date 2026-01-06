@@ -9,6 +9,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { name: 'Experience', icon: <Briefcase size={20} />, href: '/dashboard/experience' },
     { name: 'Projects', icon: <FolderDot size={20} />, href: '/dashboard/projects' },
     { name: 'Contact', icon: <MessageSquare size={20} />, href: '/dashboard/contact' },
+    { name: 'portfoilo', icon: <MessageSquare size={20} />, href: '/dashboard/portfoilo' },
+
   ];
 
   return (
@@ -16,10 +18,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Sidebar الإحترافي */}
       <aside className="w-64 border-r border-gray-800 bg-[#0b0f13] flex flex-col fixed h-full">
         <div className="p-6">
-          <Link href="/" className="flex items-center gap-2 text-xl font-bold text-[#8750f7]">
+          <div className="flex items-center gap-2 text-xl font-bold text-[#8750f7]">
             <Home size={24} />
             <span>PORTFOLIO</span>
-          </Link>
+          </div>
         </div>
 
         <nav className="flex-1 px-4 space-y-1 h-full flex flex-col items-start justify-center">
