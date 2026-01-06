@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { FaAlignRight } from "react-icons/fa6";
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from "../../utils/supabase";
-import Link from "next/link"; // استيراد Link للتنقل بين الصفحات
+import Link from "next/link";
 
 const NavBar = ({ userId }: { userId: string | null }) => {
   const [isNavbarVisible, setNavbarVisible] = useState(false);
@@ -93,7 +93,6 @@ const NavBar = ({ userId }: { userId: string | null }) => {
   )}
 </div>
 
-{/* داخل الـ Mobile Menu Trigger */}
 
 {/* داخل الـ Mobile Menu Trigger */}
 <div className="md:hidden flex items-center gap-4">
@@ -168,3 +167,5 @@ const NavBar = ({ userId }: { userId: string | null }) => {
 };
 
 export default NavBar;
+
+

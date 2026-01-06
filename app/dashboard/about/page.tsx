@@ -110,19 +110,19 @@ export default function AboutDashboard() {
   };
 
   if (loading) return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <RefreshCw className="animate-spin text-[#8750f7]" size={40} />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white p-6 md:p-12 font-sans" dir="ltr">
+    <div className="min-h-screen text-white p-6 md:p-12 font-sans" dir="ltr">
       <div className="max-w-4xl mx-auto space-y-10">
         
         {/* Header */}
         <div className="flex justify-between items-center border-b border-gray-800 pb-6">
           <div>
-            <h1 className="text-3xl font-bold text-white">About Manager <span className="text-[#8750f7]">.</span></h1>
+            <h1 className="text-xl md:text-3xl font-bold text-white">About Manager <span className="text-[#8750f7]">.</span></h1>
             <p className="text-gray-500 text-sm mt-1">
               {isEditing ? "Editing your professional profile" : "View mode"}
             </p>

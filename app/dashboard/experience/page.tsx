@@ -117,19 +117,19 @@ const handleSubmit = async (e: React.FormEvent) => {
   };
 
   if (loading) return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <RefreshCw className="animate-spin text-[#8750f7]" size={40} />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-gray-200 p-6 md:p-12 font-sans" dir="ltr">
+    <div className="min-h-screen text-gray-200 p-6 md:p-12 font-sans" dir="ltr">
       <div className="max-w-5xl mx-auto">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4 border-b border-gray-800 pb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white tracking-tight">Work Experience <span className="text-[#8750f7]">.</span></h1>
+            <h1 className="text-xl md:text-3xl font-bold text-white tracking-tight">Work Experience <span className="text-[#8750f7]">.</span></h1>
             <p className="text-gray-500 mt-1">Manage your professional career timeline</p>
           </div>
           

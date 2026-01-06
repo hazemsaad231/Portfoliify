@@ -8,10 +8,10 @@ import {
 } from 'lucide-react';
 
 const PLACEHOLDER_DATA = {
-  small_name: 'HS',
+  small_name: 'XX',
   full_name: 'Your Full Name',
-  job_title: 'Software Engineer / Designer',
-  mini_bio: 'I am a professional developer specialized in building modern web applications.',
+  job_title: 'Your Job Title',
+  mini_bio: 'A brief bio about you.',
   exp_years: 0,
   projects_completed: 0,
   linkedin_url: '',
@@ -114,19 +114,19 @@ export default function HeroDashboard() {
   };
 
   if (loading) return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <RefreshCw className="animate-spin text-[#8750f7]" size={40} />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-gray-200 p-4 md:p-10 font-sans" dir="ltr">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen text-gray-200 p-4 md:p-10 font-sans" dir="ltr">
+      <div className="max-w-6xl mx-auto">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4 border-b border-gray-800 pb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-5 gap-4 border-b border-gray-800 pb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white tracking-tight">Hero Manager <span className="text-[#8750f7]">.</span></h1>
+            <h1 className="text-xl md:text-3xl font-bold text-white tracking-tight">Hero Manager <span className="text-[#8750f7]">.</span></h1>
             <p className="text-gray-500 mt-1">{isEditing ? 'Editing your profile' : 'Viewing your profile'}</p>
           </div>
           <div className="flex items-center gap-4">
@@ -161,7 +161,7 @@ export default function HeroDashboard() {
                   <input 
                     disabled={!isEditing} 
                     maxLength={2}
-                    placeholder="HS"
+                    placeholder="XX"
                     className="w-full bg-black/40 border border-gray-800 rounded-2xl p-4 focus:border-[#8750f7] outline-none text-white uppercase" 
                     value={data.small_name} 
                     onChange={e => setData({...data, small_name: e.target.value.toUpperCase().replace(/[^A-Z]/g, '')})} 

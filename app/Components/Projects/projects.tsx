@@ -122,7 +122,7 @@ const Projects = ({ userId }: { userId: string | null }) => {
   );
 
   return (
-    <div className="py-20 bg-[#050505]" id="projects">
+    <div className="py-20" id="projects">
       {/* العنوان */}
       <div className="px-4 sm:px-4 md:px-6 lg:px-8 xl:px-32">
         <div className="text-left w-full my-10">

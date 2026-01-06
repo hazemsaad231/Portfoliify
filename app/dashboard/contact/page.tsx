@@ -93,13 +93,13 @@ export default function ContactAdmin() {
   };
 
   if (loading && !isEditing) return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <RefreshCw className="animate-spin text-[#8750f7]" size={40} />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] p-6 md:p-12" dir="ltr">
+    <div className="min-h-screen p-6 md:p-12" dir="ltr">
       <div className="max-w-3xl mx-auto">
         
         {/* Header Section */}
@@ -109,7 +109,7 @@ export default function ContactAdmin() {
               <Info className="text-[#8750f7]" size={28} />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white">Contact Channels <span className="text-[#8750f7]">.</span></h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white">Contact Channels <span className="text-[#8750f7]">.</span></h2>
               <p className="text-gray-500 text-sm">Update your public contact methods</p>
             </div>
           </div>

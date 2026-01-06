@@ -148,19 +148,19 @@ export default function AllProjectsAdmin() {
   };
 
   if (loading && projects.length === 0) return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <RefreshCw className="animate-spin text-[#8750f7]" size={40} />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-gray-200 p-6 md:p-12 font-sans" dir="ltr">
+    <div className="min-h-screen text-gray-200 p-6 md:p-12 font-sans" dir="ltr">
       <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-[#0b0f13] p-8 rounded-3xl border border-gray-800 shadow-xl">
           <div>
-            <h2 className="text-3xl font-bold text-white tracking-tight">Project Portfolio <span className="text-[#8750f7]">.</span></h2>
+            <h2 className="text-xl md:text-3xl font-bold text-white tracking-tight">Project Portfolio <span className="text-[#8750f7]">.</span></h2>
             <p className="text-gray-500 mt-1">Showcase your best work to the world</p>
           </div>
           {!isEditing && (

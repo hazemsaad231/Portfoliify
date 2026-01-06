@@ -39,25 +39,25 @@ export default function PortfolioLinksPage() {
     };
 
 if (loading) return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <RefreshCw className="animate-spin text-[#8750f7]" size={40} />
     </div>
   );
 
     return (
-        <div className="min-h-screen bg-[#050505] flex items-center justify-center p-6">
-            <div className="w-full max-w-lg bg-[#0b0f13] border border-gray-800 p-8 rounded-[2.5rem] shadow-2xl">
-                <h1 className="text-2xl font-bold text-white mb-8 text-center">Your Links <span className="text-[#8750f7]">.</span></h1>
+        <div className="min-h-screen flex items-center justify-center p-2 md:p-6">
+            <div className="max-w-lg bg-[#0b0f13] border border-gray-800 p-4 md:p-6 rounded-[2.5rem] shadow-2xl">
+                <h1 className="text-xl md:text-2xl font-bold text-white mb-8 text-center">Your Links <span className="text-[#8750f7]">.</span></h1>
 
                 <div className="space-y-6">
                     {/* Portfolio Link */}
-                    <div className="p-6 bg-black/40 border border-gray-800 rounded-3xl group hover:border-[#8750f7]/50 transition-all">
+                    <div className="p-2 md:p-6 bg-black/40 border border-gray-800 rounded-3xl group hover:border-[#8750f7]/50 transition-all">
                         <div className="flex items-center gap-3 mb-4 text-[#8750f7]">
                             <User size={20} />
                             <span className="text-sm font-bold uppercase tracking-widest">Public Portfolio</span>
                         </div>
-                        <div className="flex items-center gap-2 bg-black/60 p-3 rounded-2xl border border-gray-800">
-                            <input readOnly value={links.portfolio} className="bg-transparent flex-1 text-sm text-gray-400 outline-none overflow-hidden text-ellipsis" />
+                        <div className="flex items-center gap-2 bg-black/60 p-2 rounded-2xl border border-gray-800">
+                            <input readOnly value={links.portfolio} className="bg-transparent w-40 md:w-full text-sm text-gray-400 outline-none overflow-hidden text-ellipsis" />
                             <button onClick={() => copyToClipboard(links.portfolio)} className="p-2 hover:bg-[#8750f7]/20 rounded-lg text-gray-400 hover:text-[#8750f7] transition-all">
                                 <Copy size={18} />
                             </button>
@@ -68,13 +68,13 @@ if (loading) return (
                     </div>
 
                     {/* Dashboard Link */}
-                    <div className="p-6 bg-black/40 border border-gray-800 rounded-3xl group hover:border-[#8750f7]/50 transition-all">
+                    <div className="p-2 md:p-6 bg-black/40 border border-gray-800 rounded-3xl group hover:border-[#8750f7]/50 transition-all">
                         <div className="flex items-center gap-3 mb-4 text-[#8750f7]">
                             <LayoutDashboard size={20} />
                             <span className="text-sm font-bold uppercase tracking-widest">Admin Dashboard</span>
                         </div>
-                        <div className="flex items-center gap-2 bg-black/60 p-3 rounded-2xl border border-gray-800">
-                            <input readOnly value={links.dashboard} className="bg-transparent flex-1 text-sm text-gray-400 outline-none overflow-hidden text-ellipsis" />
+                        <div className="flex items-center gap-2 bg-black/60 p-2 rounded-2xl border border-gray-800">
+                            <input readOnly value={links.dashboard} className="bg-transparent w-40 md:w-full text-sm text-gray-400 outline-none overflow-hidden text-ellipsis" />
                             <button onClick={() => copyToClipboard(links.dashboard)} className="p-2 hover:bg-[#8750f7]/20 rounded-lg text-gray-400 hover:text-[#8750f7] transition-all">
                                 <Copy size={18} />
                             </button>
