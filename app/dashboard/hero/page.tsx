@@ -10,7 +10,7 @@ import {
 const PLACEHOLDER_DATA = {
   small_name: 'XX',
   first_name: 'Your First Name',
-  last_name: 'Your Full Name',
+  last_name: 'Your Last Name',
   job_title: 'Your Job Title',
   mini_bio: 'A brief bio about you.',
   exp_years: 0,
@@ -223,7 +223,7 @@ export default function HeroDashboard() {
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block">Last Name</label>
-                    <input disabled={!isEditing} className="w-full bg-black/40 border border-gray-800 rounded-2xl p-4 focus:border-[#8750f7] outline-none text-white transition-all" value={data.Last_name} onChange={e => setData({...data, Last_name: e.target.value})} />
+                    <input disabled={!isEditing} className="w-full bg-black/40 border border-gray-800 rounded-2xl p-4 focus:border-[#8750f7] outline-none text-white transition-all" value={data.last_name} onChange={e => setData({...data, last_name: e.target.value})} />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block">Small Name (2 Letters)</label>
