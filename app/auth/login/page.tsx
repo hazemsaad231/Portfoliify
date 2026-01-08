@@ -66,7 +66,6 @@ export default function LoginPage() {
           <div>
             <div className="flex justify-between items-center mb-2 ml-1">
               <label className="block text-xs font-bold uppercase tracking-widest text-gray-500">Password</label>
-              <button type="button" className="text-[10px] text-[#8750f7] hover:underline uppercase font-bold tracking-tighter">Forgot Password?</button>
             </div>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
