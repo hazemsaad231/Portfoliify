@@ -9,7 +9,8 @@ import {
 
 const PLACEHOLDER_DATA = {
   small_name: 'XX',
-  full_name: 'Your Full Name',
+  first_name: 'Your First Name',
+  last_name: 'Your Full Name',
   job_title: 'Your Job Title',
   mini_bio: 'A brief bio about you.',
   exp_years: 0,
@@ -216,9 +217,13 @@ export default function HeroDashboard() {
 
                 {/* Form Inputs */}
                 <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block">First Name</label>
+                    <input disabled={!isEditing} className="w-full bg-black/40 border border-gray-800 rounded-2xl p-4 focus:border-[#8750f7] outline-none text-white transition-all" value={data.first_name} onChange={e => setData({...data, first_name: e.target.value})} />
+                  </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block">Full Name</label>
-                    <input disabled={!isEditing} className="w-full bg-black/40 border border-gray-800 rounded-2xl p-4 focus:border-[#8750f7] outline-none text-white transition-all" value={data.full_name} onChange={e => setData({...data, full_name: e.target.value})} />
+                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block">Last Name</label>
+                    <input disabled={!isEditing} className="w-full bg-black/40 border border-gray-800 rounded-2xl p-4 focus:border-[#8750f7] outline-none text-white transition-all" value={data.Last_name} onChange={e => setData({...data, Last_name: e.target.value})} />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest block">Small Name (2 Letters)</label>

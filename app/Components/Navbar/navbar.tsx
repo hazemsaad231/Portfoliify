@@ -64,10 +64,10 @@ const NavBar = ({ userId }: { userId: string | null }) => {
             <span className="text-[#8750f7]">.</span>
           </span>
           <span className="text-[10px] uppercase tracking-[3px] font-medium text-gray-400">
-            {dbContact?.full_name || "Your Name"}
+            {dbContact?.first_name ? `${dbContact.first_name} ${dbContact.last_name}` : "Your Name"}
           </span>
         </motion.div>
-        
+      
         
 {/* داخل الـ Desktop Navigation */}
 <div className="hidden md:flex items-center gap-8">

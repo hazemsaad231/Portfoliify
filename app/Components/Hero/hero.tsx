@@ -23,7 +23,7 @@ const Hero = async ({ userId }: { userId: string | null }) => {
     console.log("Hero Data:", data);
   }
 
-  const { full_name = 'Your Name', job_title = 'Your Job Title', mini_bio = 'Your professional bio goes here.', exp_years = '0', projects_completed = '0', linkedin_url = '#', github_url = '#', whatsapp_url = '', cv_url = '#' } = data || {};
+  const { first_name = 'Your Name', job_title = 'Your Job Title', mini_bio = 'Your professional bio goes here.', exp_years = '0', projects_completed = '0', linkedin_url = '#', github_url = '#', whatsapp_url = '', cv_url = '#' } = data || {};
 
   return (
     <div className="py-44"  id="home">
@@ -35,7 +35,7 @@ const Hero = async ({ userId }: { userId: string | null }) => {
   className="bg-linear-to-r from-[#8750f7] to-white bg-clip-text text-5xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl font-bold tracking-[2px] inline-block"
   style={{ WebkitTextFillColor: "transparent" }}
 >
- I am {full_name}
+ I am {first_name}
 </h1>
         <h1 className='text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl my-3'>
         {job_title}
