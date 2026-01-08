@@ -35,7 +35,7 @@ const Hero = async ({ userId }: { userId: string | null }) => {
   className="bg-linear-to-r from-[#8750f7] to-white bg-clip-text text-5xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-6xl font-bold tracking-[2px] inline-block"
   style={{ WebkitTextFillColor: "transparent" }}
 >
-  {full_name}
+ I am {full_name}
 </h1>
         <h1 className='text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl my-3'>
         {job_title}
