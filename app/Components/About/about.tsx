@@ -1,7 +1,6 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Calendar, MapPin } from 'lucide-react';
-import { skills } from '../../../Data/data';
 import { useEffect , useState } from 'react';
 import { supabase } from '../../utils/supabase';
 
