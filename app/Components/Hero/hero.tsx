@@ -62,7 +62,7 @@ const Hero = async ({ userId }: { userId: string | null }) => {
         </div>
     </div>
 
-<div className='card rounded-xl border-2 border-linear-to-t from-[#8750f7] to-white shadow-xl w-full sm:w-[90%] md:w-[80%] lg:w-[80%] transition-all duration-500 ease-in-out xl:w-[50%] p-4'>
+<div className='card rounded-xl border-2 border-linear-to-t from-[#8750f7] to-white shadow-xl w-full sm:w-[90%] md:w-[80%] lg:w-[80%] transition-all duration-500 ease-in-out xl:w-[50%] p-4 hover:border-[#8750f7]'>
   <ul className='flex flex-col sm:flex-col md:flex-row lg:flex-row xl:flex-row justify-center items-center gap-8 sm:gap-8 md:gap-16 lg:gap-24 xl:gap-24'> 
     <li className='flex gap-2'> <span className='font-bold text-5xl'>+{exp_years}</span><span className='text-sm relative top-4'>Years of Experience</span></li>
     <li className='flex gap-2'> <span className='font-bold text-5xl'>+{projects_completed}</span><span className='text-sm relative top-4'>Projects Completed</span></li>
