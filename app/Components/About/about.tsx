@@ -1,7 +1,7 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Calendar, MapPin } from 'lucide-react';
-import { skills } from '../../Data/data';
+import { skills } from '../../../Data/data';
 import { useEffect , useState } from 'react';
 import { supabase } from '../../utils/supabase';
 
@@ -79,16 +79,6 @@ export default  function About({ userId }: { userId: string | null }) {
 
             <div>
               {item.about_me_long}
-              {/* <p>
-                I'm <span className="text-primary font-semibold">Hazem</span>, a front-end developer specialized in React, 
-                with experience in building secure, scalable, and high performance server side applications.
-              </p>
-              <p>
-                 I've built online stores, control panels, and data management systems, and I'm interested in improving performance and user experience.
-              </p>
-              <p>
-                 I stay up-to-date with the evolving landscape of web technologies to ensure that I always deliver cutting-edge solutions.
-              </p> */}
             </div>
           </motion.div>
 

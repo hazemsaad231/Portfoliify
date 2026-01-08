@@ -74,7 +74,7 @@ const NavBar = ({ userId }: { userId: string | null }) => {
   <ul className='flex items-center gap-8'>
     {navLinks.map((link, index) => (
       <li key={index}>
-        <a href={link.href} className="text-md font-medium text-gray-200 hover:text-[#8750f7] transition-colors relative group">
+        <a href={link.href} className="text-md md:text-lg font-medium text-gray-200 hover:text-[#8750f7] transition-colors relative group">
           {link.label}
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#8750f7] transition-all duration-300 group-hover:w-full"></span>
         </a>
@@ -86,7 +86,7 @@ const NavBar = ({ userId }: { userId: string | null }) => {
   {!userId && (
     <Link 
       href="/auth/register" 
-      className="bg-[#8750f7] text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-[#6b3be6] transition-all shadow-lg shadow-[#8750f7]/20"
+      className="bg-[#8750f7] text-white p-3 rounded-full font-bold text-md  hover:bg-[#6b3be6] transition-all shadow-lg shadow-[#8750f7]/20"
     >
       Create Portfolio
     </Link>
