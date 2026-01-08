@@ -45,11 +45,11 @@ if (loading) return (
   );
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-2 md:p-6">
-            <div className="max-w-lg bg-[#0b0f13] border border-gray-800 p-4 md:p-6 rounded-[2.5rem] shadow-2xl">
+        <div className="min-h-screen flex items-center justify-center m-auto p-4">
+            <div className="max-w-lg bg-[#0b0f13] border border-gray-800 p-4 md:p-12 rounded-[2.5rem] shadow-2xl">
                 <h1 className="text-xl md:text-2xl font-bold text-white mb-8 text-center">Your Links <span className="text-[#8750f7]">.</span></h1>
 
-                <div className="space-y-6">
+                <div className="space-y-12">
                     {/* Portfolio Link */}
                     <div className="p-2 md:p-6 bg-black/40 border border-gray-800 rounded-3xl group hover:border-[#8750f7]/50 transition-all">
                         <div className="flex items-center gap-3 mb-4 text-[#8750f7]">
