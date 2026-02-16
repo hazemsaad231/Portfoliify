@@ -1,6 +1,7 @@
 
 
-'use client';
+"use client";
+import { toast } from "react-toastify";
 import { useEffect, useState } from 'react';
 import { supabase } from '../../utils/supabase';
 import { ExternalLink, Copy, LayoutDashboard, User, RefreshCw } from 'lucide-react';
@@ -35,7 +36,7 @@ export default function PortfolioLinksPage() {
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
-        alert("Link copied to clipboard!");
+        toast.success("Link copied to clipboard!");
     };
 
 if (loading) return (

@@ -24,7 +24,7 @@ export default function LoginPage() {
     });
 
     if (error) {
-      alert('خطأ في تسجيل الدخول: ' + error.message);
+      toast.error('خطأ في تسجيل الدخول: ' + error.message);
     } else {
       toast.success('تم تسجيل الدخول بنجاح');
       router.push('/dashboard/hero'); // توجيه المستخدم لوحة التحكم بعد النجاح
