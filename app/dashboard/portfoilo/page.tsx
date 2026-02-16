@@ -1,7 +1,7 @@
 
 
 "use client";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useEffect, useState } from 'react';
 import { supabase } from '../../utils/supabase';
 import { ExternalLink, Copy, LayoutDashboard, User, RefreshCw } from 'lucide-react';
